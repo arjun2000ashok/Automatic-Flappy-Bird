@@ -8,8 +8,7 @@ function setup(){
 
 function draw(){
     background(0);
-    bird.show();
-    bird.update();
+    
     for(let  i=pipes.length - 1 ;i >= 0;i--){
         pipes[i].show();
         pipes[i].update();
@@ -23,13 +22,17 @@ function draw(){
         }
     }
 
+    bird.think(pipes);
+    bird.show();
+    bird.update();
+
     if(frameCount % 60 == 0){
         pipes.push(new Pipe());
     }
 }
 
-function keyPressed(){
-    if(key == ' '){
-        bird.up();
-    }
-}
+// function keyPressed(){
+//     if(key == ' '){
+//         bird.up();
+//     }
+// }
