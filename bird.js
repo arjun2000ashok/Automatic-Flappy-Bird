@@ -1,12 +1,18 @@
 class Bird{
-    constructor(){
+    constructor(brain){
         this.y = height/2;
         this.x = 64;
         this.gravity = 0.6;
         this.velocity = 0;
         this.lift = -10;
-
-        this.brain = new NeuralNetwork(4,4,1);
+        this.score = 0;
+        if(brain){
+            this.brain = brain.copy();
+        }
+        else{
+            this.brain = new NeuralNetwork(4,4,1);
+        }
+        this.fitness = 0;
     }
 
     show(){
@@ -15,6 +21,7 @@ class Bird{
     }
 
     update(){
+        this.score++;
         this.velocity += this.gravity;
         this.y += this.velocity;
 

@@ -1,30 +1,45 @@
-let bird;
+let birds = [];
 let pipes = [];
+let previousGenerationBirds = [];
+const TOTAL = 100;
 function setup(){
     createCanvas(640,480);
-    bird = new Bird();
+    for(let i=0;i<TOTAL;i++){
+        birds[i] = new Bird();
+    }
     pipes.push(new Pipe());
 }
 
 function draw(){
     background(0);
+
+    if(birds.length === 0){
+        //the population is over
+        nextGeneration();
+        console.log("End of generation!");
+    }
     
     for(let  i=pipes.length - 1 ;i >= 0;i--){
         pipes[i].show();
         pipes[i].update();
         
-        if(pipes[i].hits(bird)){
-            console.log("HIT!");
-        }
-        
+        for(let j=0;j<birds.length;j++){
+            if(pipes[i].hits(birds[j])){
+                console.log("HIT!");
+                previousGenerationBirds.push(birds[j]);
+                birds.splice(j,1);
+            }
+        }     
         if(pipes[i].offscreen()){
             pipes.splice(i,1);
         }
     }
-
-    bird.think(pipes);
-    bird.show();
-    bird.update();
+    for(let i=0;i<birds.length;i++){
+        birds[i].think(pipes);
+        birds[i].show();
+        birds[i].update();
+    }
+    
 
     if(frameCount % 60 == 0){
         pipes.push(new Pipe());
