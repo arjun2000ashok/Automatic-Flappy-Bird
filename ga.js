@@ -6,12 +6,20 @@ function nextGeneration(){
     }
 }
 
-function pickOneBird(){
-    let randomBird = random(previousGenerationBirds);
+
+function pickOneBird() {
+    var index = 0;
+    var r = random(1);
+    while (r > 0) {
+      r = r - previousGenerationBirds[index].fitness;
+      index++;
+    }
+    index--;
+    let randomBird = previousGenerationBirds[index];
     let bird = new Bird(randomBird.brain);
     bird.brain.mutate(0.1);
     return randomBird;
-}
+  }
 
 
 function calculateFitness(){

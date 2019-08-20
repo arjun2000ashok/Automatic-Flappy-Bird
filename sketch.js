@@ -25,7 +25,6 @@ function draw(){
         
         for(let j=0;j<birds.length;j++){
             if(pipes[i].hits(birds[j])){
-                console.log("HIT!");
                 previousGenerationBirds.push(birds[j]);
                 birds.splice(j,1);
             }
