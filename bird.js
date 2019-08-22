@@ -1,3 +1,7 @@
+function mutator(value){
+    return value * 0.1;
+}
+
 class Bird{
     constructor(brain){
         this.y = height/2;
@@ -8,9 +12,11 @@ class Bird{
         this.score = 0;
         if(brain){
             this.brain = brain.copy();
+            console.log("Brain copied !");
         }
         else{
             this.brain = new NeuralNetwork(4,4,1);
+            console.log("Brain created !");
         }
         this.fitness = 0;
     }
@@ -34,6 +40,8 @@ class Bird{
             this.velocity = 0;
         }
     }
+
+
 
     up(){
         this.velocity += this.lift;
@@ -73,4 +81,9 @@ class Bird{
         }
 
     }
+
+    static copy(bird){
+        return new Bird(bird.brain);
+    }
 }
+

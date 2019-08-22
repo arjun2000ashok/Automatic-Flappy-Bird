@@ -15,8 +15,8 @@ function draw(){
 
     if(birds.length === 0){
         //the population is over
-        nextGeneration();
         console.log("End of generation!");
+        nextGeneration(previousGenerationBirds);
     }
     
     for(let  i=pipes.length - 1 ;i >= 0;i--){
