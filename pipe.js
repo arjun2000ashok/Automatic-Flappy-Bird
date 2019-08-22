@@ -4,7 +4,7 @@ class Pipe{
         this.top = random(height / 6, 3 / 4 * height);
         this.bottom = this.top + this.spacing;
         this.x = width;
-        this.w = 20;
+        this.w = 50;
         this.speed = 3;
         this.highlight = false;
     }
@@ -16,8 +16,8 @@ class Pipe{
         else{
             fill(255);
         }
-        rect(this.x,0,20,this.top);
-        rect(this.x,this.bottom,20,height);;
+        rect(this.x,0,this.w,this.top);
+        rect(this.x,this.bottom,this.w,height);;
     }
 
     offscreen(){
