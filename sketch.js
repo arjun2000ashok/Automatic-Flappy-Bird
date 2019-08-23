@@ -70,8 +70,12 @@ function draw(){
 
 }
 
-// function keyPressed(){
-//     if(key == ' '){
-//         bird.up();
-//     }
-// }
+function keyPressed(){
+    if(key == 's'){
+        saveJSON(birds[0].brain,'bestBird.json');
+    }
+    if(key == 'l'){
+        var json = loadJSON('bestBird.json');
+        console.log(NeuralNetwork.deserialize(json));
+    }
+}
