@@ -75,7 +75,14 @@ function keyPressed(){
         saveJSON(birds[0].brain,'bestBird.json');
     }
     if(key == 'l'){
-        var json = loadJSON('bestBird.json');
-        console.log(NeuralNetwork.deserialize(json));
+        fetch('bestBird.json')
+        .then(response => response.json())
+        .then(jsonResponse => {
+            console.log(jsonResponse)
+            birds = [];
+            birds[0] = new Bird(NeuralNetwork.deserialize(jsonResponse));
+            counter = 0;
+            pipes = [];
+        });
     }
 }
